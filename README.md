@@ -7,7 +7,7 @@ Générateur de QR codes pour des références (exemple: E10000, E10001, etc.)
 - Génération de QR codes à partir de références textuelles
 - Génération en masse à partir d'un fichier CSV ou d'une liste
 - Personnalisation de la taille et du niveau de correction d'erreur
-- Export en PNG avec nom de fichier basé sur la référence
+- Export en SVG (format vectoriel, qualité infinie) avec nom de fichier basé sur la référence
 - Support des URL personnalisées
 
 ## Installation
@@ -77,10 +77,10 @@ python qr_generator.py --reference E10000 \
 
 Les QR codes sont sauvegardés dans le dossier `QR CODE GENERE/` avec le nom:
 ```
-<reference>.png
+<reference>.svg
 ```
 
-Exemple: `E10000.png`
+Exemple: `E10000.svg`
 
 ## Exemples
 

@@ -9,17 +9,16 @@ import os
 import sys
 from pathlib import Path
 import qrcode
-from qrcode.image.styledpil import StyledPilImage
-from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
+import qrcode.image.svg
 
 
 def create_qr_code(data, output_path, size=10, border=4, error_correction='M'):
     """
-    Crée un QR code et le sauvegarde
+    Crée un QR code et le sauvegarde au format SVG
 
     Args:
         data: Contenu du QR code (texte ou URL)
-        output_path: Chemin de sortie pour l'image PNG
+        output_path: Chemin de sortie pour le fichier SVG
         size: Taille du QR code (1-40, défaut: 10)
         border: Taille de la bordure en modules (défaut: 4)
         error_correction: Niveau de correction d'erreur (L, M, Q, H)
@@ -32,19 +31,21 @@ def create_qr_code(data, output_path, size=10, border=4, error_correction='M'):
         'H': qrcode.constants.ERROR_CORRECT_H,  # ~30% de correction
     }
 
-    # Créer l'objet QR code
+    # Créer l'objet QR code avec factory SVG
+    factory = qrcode.image.svg.SvgPathImage
     qr = qrcode.QRCode(
         version=1,  # Taille du QR code (1 = 21x21, augmente automatiquement si nécessaire)
         error_correction=error_levels.get(error_correction.upper(), qrcode.constants.ERROR_CORRECT_M),
         box_size=size,
         border=border,
+        image_factory=factory,
     )
 
     # Ajouter les données
     qr.add_data(data)
     qr.make(fit=True)
 
-    # Créer l'image
+    # Créer l'image SVG
     img = qr.make_image(fill_color="black", back_color="white")
 
     # Sauvegarder
@@ -74,7 +75,7 @@ def generate_from_reference(reference, url_base=None, output_dir="QR CODE GENERE
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
     # Construire le chemin de sortie
-    output_path = os.path.join(output_dir, f"{reference}.png")
+    output_path = os.path.join(output_dir, f"{reference}.svg")
 
     # Générer le QR code
     create_qr_code(data, output_path, **kwargs)
