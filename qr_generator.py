@@ -52,7 +52,7 @@ def create_qr_code(data, output_path, size=10, border=4, error_correction='M'):
     print(f"✓ QR code créé: {output_path}")
 
 
-def generate_from_reference(reference, url_base=None, output_dir="output", **kwargs):
+def generate_from_reference(reference, url_base=None, output_dir="QR CODE GENERE", **kwargs):
     """
     Génère un QR code à partir d'une référence
 
@@ -82,7 +82,7 @@ def generate_from_reference(reference, url_base=None, output_dir="output", **kwa
     return output_path
 
 
-def generate_from_file(file_path, url_base=None, output_dir="output", **kwargs):
+def generate_from_file(file_path, url_base=None, output_dir="QR CODE GENERE", **kwargs):
     """
     Génère des QR codes à partir d'un fichier de références
 
@@ -142,8 +142,8 @@ Exemples:
     parser.add_argument('--url', '-u',
                         help='URL de base (ex: https://monsite.com/produit/)')
     parser.add_argument('--output-dir', '-o',
-                        default='output',
-                        help='Dossier de sortie (défaut: output)')
+                        default='QR CODE GENERE',
+                        help='Dossier de sortie (défaut: QR CODE GENERE)')
     parser.add_argument('--size', '-s',
                         type=int,
                         default=10,

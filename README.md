@@ -71,11 +71,11 @@ python qr_generator.py --reference E10000 \
 - `--size` : Taille du QR code (défaut: 10)
 - `--border` : Taille de la bordure (défaut: 4)
 - `--error-correction` : Niveau de correction d'erreur (L, M, Q, H)
-- `--output-dir` : Dossier de sortie (défaut: ./output)
+- `--output-dir` : Dossier de sortie (défaut: ./QR CODE GENERE)
 
 ## Structure des fichiers générés
 
-Les QR codes sont sauvegardés dans le dossier `output/` avec le nom:
+Les QR codes sont sauvegardés dans le dossier `QR CODE GENERE/` avec le nom:
 ```
 <reference>.png
 ```
